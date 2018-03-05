@@ -10,12 +10,15 @@ Location::Location(){
 Location::Location(char type){
     face = type;
 
-    if(type == '&'){
+    if(type == '#'){
         isWall = true;
     }
+    else
+        isWall = false;
 
     isLocked = false;
     drop = nullptr;
+    exit = "";
 }
 
 Location::Location(char type, bool locked){
@@ -23,6 +26,15 @@ Location::Location(char type, bool locked){
     isLocked = locked;
     drop = nullptr;
     isWall = false;
+    exit = "";
+}
+
+Location::Location(char type, bool locked, bool wall){
+    face = type;
+    isLocked = locked;
+    drop = nullptr;
+    isWall = wall;
+    exit = "";
 }
 
 Location::Location(char type, Item* item){
@@ -30,6 +42,7 @@ Location::Location(char type, Item* item){
     drop = item;
     isWall = false;
     isLocked = false;
+    exit = "";
 }
 
 Item* Location::getItem(){
@@ -48,4 +61,8 @@ void Location::addDrop(Item* item){
 void Location::deleteItem(){
     drop = nullptr;
     face = '*';
+}
+
+void Location::addExit(string exitName){
+    exit = exitName;
 }

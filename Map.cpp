@@ -21,7 +21,7 @@ Map::Map(){
     for(int i = 0; i < width; i++){
         for(int j = 0; j < height; j++){
             inFile >> in;
-            locations[i][j] = Location(in);
+            locations[j][i] = Location(in);
         }
     }
 

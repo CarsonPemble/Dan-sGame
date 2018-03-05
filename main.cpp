@@ -10,7 +10,7 @@ int main()
     Item vase("Vase", 10);
     //    Item mace("Mace", 20);
 
-    Character Link(0,0,"Link",20);
+    Character Link(1,0,"Link",20);
 
     Screen newScreen(&Link);
     newScreen.addItem(&vase,5,5);
@@ -19,7 +19,6 @@ int main()
     string input;
 
     while(newScreen.withinBounds()){
-        newScreen.update();
         getline(cin,input);
         int next = Link.command(input);
 
@@ -28,6 +27,7 @@ int main()
             next = Link.command(input);
         }
 
+        newScreen.update();
         newScreen.print();
     }
     return 0;

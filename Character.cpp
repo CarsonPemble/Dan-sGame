@@ -3,6 +3,8 @@
 Character::Character(int x, int y, string Name, int health){
     xPos = x;
     yPos = y;
+    prevX = xPos;
+    prevY = yPos;
     name = Name;
     HP = health;
 }
@@ -40,6 +42,9 @@ void Character::print() const{
 
 void Character::move(char in){
 
+    prevX = xPos;
+    prevY = yPos;
+
     if(in == 'w')
         yPos--;
     else if(in == 's')
@@ -66,4 +71,9 @@ int Character::command(string input){
     else{
         return 0;
     }
+}
+
+void Character::moveBack(){
+        xPos = prevX;
+        yPos = prevY;
 }

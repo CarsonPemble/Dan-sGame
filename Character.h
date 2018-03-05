@@ -12,10 +12,15 @@ class Character
 private:
     int InvSize = 10;
     vector<Item*> Inventory;
+
     int xPos;
     int yPos;
+    int prevX;
+    int prevY;
+
     int HP;
     string name;
+
 public:
     Character(int x, int y, string Name, int health);
     int getX() const;
@@ -26,6 +31,7 @@ public:
     int command(string input);
     void movex();
     void moveY();
+    void moveBack();
 };
 
 #endif // CHARACTER_H

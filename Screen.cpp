@@ -31,6 +31,9 @@ void Screen::addItem(Item* newItem, int itemX, int itemY){
     locations[itemX][itemY].addDrop(newItem);
 }
 
+void Screen::addExit(string exitName, int x, int y){
+    locations[x][y].addExit(exitName);
+}
 
 void Screen::print(){
 
@@ -46,7 +49,7 @@ void Screen::print(){
                 out[i] += '@';
 
             else
-                out[i] += static_cast<char>(locations[i][j].print());
+                out[i] += static_cast<char>(locations[j][i].print());
         }
         cout << out[i] << endl;
     }
@@ -56,9 +59,13 @@ void Screen::print(){
 
 void Screen::update(){
     Location newloc = locations[player->getX()][player->getY()];
+
     if(newloc.getItem() != nullptr){
         player->acquire(newloc.getItem());
         locations[player->getX()][player->getY()].deleteItem();
     }
+
+    else if(newloc.wall())
+        player->moveBack();
 
 }

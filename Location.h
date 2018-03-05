@@ -10,14 +10,19 @@ private:
     Item* drop;
     bool isLocked;
     bool isWall;
+    string exit;
 
 public:
     Location();
     Location(char type);
     Location(char type, bool locked);
     Location(char type, Item* item);
+    Location(char type, bool locked, bool wall);
     void addDrop(Item* item);
+    void addExit(string exitName);
     void deleteItem();
+    bool wall(){ return isWall; };
+    bool locked(){ return isLocked; };
     Item* getItem();
     char print();
 };
